@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Review = require("./reviews");
+const Review = require("./reviews.js");
 
 const listingSchema = new Schema({
     title:{
@@ -8,17 +8,10 @@ const listingSchema = new Schema({
     },
     description:String,
     image:{
-        filename:String,
-        url:{
-            type:String,
-            default:"https://media.istockphoto.com/id/1292886307/photo/mountains-of-himalayas-young-beautiful-high-mountains-of-tibet.jpg?s=1024x1024&w=is&k=20&c=YCzifCVMF3RuCYwafBg5r66DPfXRA9ZTtpe77u8tkI0=",
-        set :(v)=>
-            v === ""
-        ?"https://media.istockphoto.com/id/1292886307/photo/mountains-of-himalayas-young-beautiful-high-mountains-of-tibet.jpg?s=1024x1024&w=is&k=20&c=YCzifCVMF3RuCYwafBg5r66DPfXRA9ZTtpe77u8tkI0=" 
-        : v,
-        }
+             url:String,
+             filename:String,   
     },
-    price:String,
+    price:Number,
     location:String,
     country:String,
     reviews:[
@@ -30,6 +23,10 @@ const listingSchema = new Schema({
         },
 
     ],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref:"User",
+    },
     
 
 });
