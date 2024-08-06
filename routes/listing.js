@@ -22,7 +22,7 @@ router
     );
 
 // New Route
-router.get("/new",isLoggedIn,listingController.renderNewForm
+router.route("/new").get(isLoggedIn,listingController.renderNewForm
 );
 
 router
@@ -32,17 +32,12 @@ router
         isOwner,
         upload.single("listing[image]"),
         validateListing,
-        upload.single("listing[image]"),
         wrapAsync (listingController.updateListing))
     .delete(isLoggedIn,isOwner,wrapAsync(listingController.destroyListing));
 
 
 
 // Edit route
-router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync( listingController.renderEditForm)
-);
+router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync( listingController.renderEditForm));
 
-
-module.exports = router;
-
-
+module.exports = router ;
